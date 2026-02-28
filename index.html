@@ -77,7 +77,7 @@
     @keyframes spinRays  { to{transform:rotate(360deg)} }
 
     /* Clouds */
-    .cloud { position: absolute; z-index: 1; animation: cloudDrift linear infinite; }
+    .cloud { position: absolute; z-index: 1; }
     .cloud svg { display: block; }
     @keyframes cloudDrift { 0%{left:-200px} 100%{left:calc(100vw + 200px)} }
 
@@ -519,12 +519,15 @@
     <div class="sun-rays-ring" id="sunRays"></div>
   </div>
 
-  <!-- Clouds -->
-  <div class="cloud" style="top:95px;animation-duration:34s;animation-delay:0s;">
-    <svg width="150" height="55" viewBox="0 0 150 55"><ellipse cx="70" cy="38" rx="65" ry="17" fill="rgba(255,255,255,.78)"/><ellipse cx="55" cy="28" rx="35" ry="22" fill="rgba(255,255,255,.78)"/><ellipse cx="90" cy="24" rx="28" ry="19" fill="rgba(255,255,255,.78)"/><ellipse cx="115" cy="33" rx="22" ry="14" fill="rgba(255,255,255,.78)"/></svg>
+  <!-- Clouds — static, left/centre only, clear of sun (top-right) -->
+  <div class="cloud" style="top:88px;left:6%;">
+    <svg width="160" height="58" viewBox="0 0 160 58"><ellipse cx="75" cy="40" rx="70" ry="18" fill="rgba(255,255,255,.82)"/><ellipse cx="58" cy="29" rx="38" ry="24" fill="rgba(255,255,255,.82)"/><ellipse cx="95" cy="25" rx="32" ry="21" fill="rgba(255,255,255,.82)"/><ellipse cx="125" cy="35" rx="24" ry="15" fill="rgba(255,255,255,.82)"/></svg>
   </div>
-  <div class="cloud" style="top:150px;animation-duration:46s;animation-delay:-18s;">
-    <svg width="110" height="42" viewBox="0 0 110 42"><ellipse cx="50" cy="30" rx="46" ry="13" fill="rgba(255,255,255,.65)"/><ellipse cx="40" cy="21" rx="24" ry="17" fill="rgba(255,255,255,.65)"/><ellipse cx="68" cy="19" rx="22" ry="15" fill="rgba(255,255,255,.65)"/></svg>
+  <div class="cloud" style="top:158px;left:32%;">
+    <svg width="120" height="46" viewBox="0 0 120 46"><ellipse cx="55" cy="32" rx="50" ry="14" fill="rgba(255,255,255,.70)"/><ellipse cx="42" cy="22" rx="27" ry="19" fill="rgba(255,255,255,.70)"/><ellipse cx="76" cy="20" rx="24" ry="17" fill="rgba(255,255,255,.70)"/><ellipse cx="100" cy="28" rx="18" ry="12" fill="rgba(255,255,255,.70)"/></svg>
+  </div>
+  <div class="cloud" style="top:108px;left:54%;">
+    <svg width="95" height="38" viewBox="0 0 95 38"><ellipse cx="44" cy="26" rx="40" ry="12" fill="rgba(255,255,255,.60)"/><ellipse cx="32" cy="18" rx="22" ry="15" fill="rgba(255,255,255,.60)"/><ellipse cx="62" cy="16" rx="20" ry="14" fill="rgba(255,255,255,.60)"/></svg>
   </div>
   <!-- Seagulls -->
   <svg class="gull" style="top:118px;animation:cloudDrift 28s linear infinite;animation-delay:-6s;" width="44" height="20" viewBox="0 0 44 20">
