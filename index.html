@@ -465,6 +465,9 @@
       .cs-panel.active { grid-template-columns: 1fr; }
       .skills-cols { grid-template-columns: 1fr; gap: 0; }
       .certs-grid { grid-template-columns: 1fr 1fr; }
+      /* Journey: stack to single column, hide decorative lighthouse */
+      .journey-cols { grid-template-columns: 1fr; gap: 32px; }
+      .journey-deco { display: none; }
     }
 
     @media (max-width: 600px) {
@@ -473,6 +476,20 @@
       .num-grid { grid-template-columns: 1fr 1fr; }
       .stat-pill .sp-num { font-size: 1.35rem; }
       .certs-grid { grid-template-columns: 1fr; }
+      /* Hero: allow height to grow so photo + content aren't clipped */
+      #hero {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 90px 24px 220px;
+        align-items: flex-start;
+        overflow: hidden;
+      }
+      .ocean-body { height: 220px; }
+      .hero-inner { gap: 20px; }
+      .hero-photo-wrap { width: 140px; height: 160px; }
+      .hero-ctas { margin-bottom: 20px; }
+      .hero-tagline { margin-bottom: 18px; }
     }
   </style>
 </head>
