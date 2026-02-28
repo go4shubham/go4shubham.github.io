@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shubham Mishra | Head of Paid Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --ocean-deep:  #003D6B;
+      --ocean-mid:   #0077B6;
+      --ocean-light: #00B4D8;
+      --ocean-pale:  #90E0EF;
+      --sky-top:     #62B8E8;
+      --sky-mid:     #8DCFEE;
+      --sky-pale:    #C2E8F8;
+      --sand:        #F5E6C8;
+      --sand-mid:    #E8D5A3;
+      --coral:       #FF6B6B;
+      --sun-color:   #FFD23F;
+      --white:       #FFFFFF;
+      --text-dark:   #0F1F2E;
+      --text-mid:    #3A526A;
+      --text-soft:   #6B8299;
+      --radius:      16px;
+      --shadow:      0 6px 28px rgba(0,40,80,0.10);
+      --shadow-lg:   0 18px 56px rgba(0,40,80,0.16);
+    }
+
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Clash Display', 'Inter', sans-serif; font-weight: 700; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 66px; padding: 0 40px;
+      display: grid; grid-template-columns: 100px 1fr 140px; align-items: center;
+      background: rgba(255,255,255,0.93); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,119,182,0.12);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(0,40,80,0.09); }
+    .nav-logo { font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--ocean-mid); letter-spacing: -.02em; text-decoration: none; cursor: pointer; }
+    .nav-links { display: flex; gap: 26px; list-style: none; justify-content: center; }
+    .nav-links a { font-size: .83rem; font-weight: 500; color: var(--text-mid); transition: color .2s; }
+    .nav-links a:hover { color: var(--ocean-deep); }
+    .nav-cta { justify-self: end; background: var(--ocean-mid); color: #fff; padding: 10px 22px; border-radius: 50px; font-size: .83rem; font-weight: 600; transition: all .2s; }
+    .nav-cta:hover { background: var(--ocean-deep); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,119,182,.35); }
+
+    /* ── HERO ── */
+    #hero {
+      height: 100vh; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 60px 200px;
+    }
+
+    .sky-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, #4FA8D8 0%, var(--sky-mid) 35%, var(--sky-pale) 60%, #b8dff2 80%, #90cce8 100%);
+    }
+
+    /* Sun */
+    .sun-wrap { position: absolute; top: 72px; right: 150px; width: 88px; height: 88px; z-index: 2; }
+    .sun-glow  { position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, rgba(255,220,60,.35) 0%, transparent 70%); animation: glowPulse 4s ease-in-out infinite; }
+    .sun-disk  { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, #FFF176 0%, #FFD23F 55%, #FFAB00 100%); box-shadow: 0 0 50px rgba(255,200,30,.6); }
+    .sun-rays-ring { position: absolute; inset: -24px; border-radius: 50%; animation: spinRays 22s linear infinite; }
+    .sun-ray { position: absolute; top: 50%; left: 50%; width: 1.5px; border-radius: 2px; background: rgba(255,215,0,.4); transform-origin: 0 0; }
+    @keyframes glowPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+    @keyframes spinRays  { to{transform:rotate(360deg)} }
+
+    /* Clouds */
+    .cloud { position: absolute; z-index: 2; animation: cloudDrift linear infinite; }
+    .cloud svg { display: block; }
+    @keyframes cloudDrift { 0%{left:-200px} 100%{left:calc(100vw + 200px)} }
+
+    /* Seagulls */
+    .gull { position: absolute; z-index: 3; animation: cloudDrift linear infinite; }
+    @keyframes seagull { 0%{left:-80px} 100%{left:calc(100vw + 80px)} }
+
+    /* Ocean */
+    .ocean-body { position: absolute; bottom: 0; left: 0; right: 0; height: 44%; z-index: 3; background: linear-gradient(180deg, #0282C8 0%, #015A9A 35%, #003D6B 100%); }
+
+    /* Surface wave animation */
+    .surface-waves { position: absolute; top: -40px; left: -50%; width: 200%; height: 70px; }
+    .sw { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .sw:nth-child(1) { animation: waveMove 7s ease-in-out infinite; }
+    .sw:nth-child(2) { animation: waveMove 10s ease-in-out infinite reverse; opacity: .55; top: -8px; }
+    .sw:nth-child(3) { animation: waveMove 14s ease-in-out infinite; opacity: .35; top: -15px; }
+    @keyframes waveMove { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-25%)} }
+
+    /* Fish */
+    /* Fish image swimming — position-only animations so static scaleX flip never conflicts */
+    .fish-img { position: absolute; z-index: 5; pointer-events: none; }
+    .fish-img img { display: block; }
+    /* swimRp / swimLp: position only, no transform in keyframes */
+    @keyframes swimRp { 0%{left:-160px} 100%{left:calc(100vw + 160px)} }
+    @keyframes swimLp { 0%{left:calc(100vw + 160px)} 100%{left:-160px} }
+    /* Emoji fish (jellyfish/squid kept as emoji) */
+    .fish-emoji { position: absolute; z-index: 5; line-height: 1; user-select: none; }
+    @keyframes swimR { 0%{left:-120px;transform:scaleX(1)} 100%{left:calc(100vw + 120px);transform:scaleX(1)} }
+    @keyframes swimL { 0%{left:calc(100vw + 120px);transform:scaleX(-1)} 100%{left:-120px;transform:scaleX(-1)} }
+
+    /* Boat — direct child of #hero, bottom:41% sits just at/below horizon */
+    .boat-wrap { position: absolute; z-index: 4; bottom: 41%; pointer-events: none; animation: boatSail 55s linear infinite; animation-delay: -8s; }
+    @keyframes boatSail { 0%{left:-180px} 100%{left:calc(100vw + 180px)} }
+
+    /* Bubbles */
+    .bubble { position: absolute; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.4); background: rgba(255,255,255,.1); animation: bubbleUp linear infinite; z-index: 6; }
+    @keyframes bubbleUp { 0%{transform:translateY(0) translateX(0);opacity:0} 10%{opacity:.9} 90%{opacity:.6} 100%{transform:translateY(-130px) translateX(8px);opacity:0} }
+
+    /* Jellyfish */
+    .jellyfish-wrap { position: absolute; z-index: 5; animation: jellyFloat 4.5s ease-in-out infinite; }
+    @keyframes jellyFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+    /* Hero layout */
+    .hero-inner { position: relative; z-index: 10; display: flex; align-items: center; gap: 64px; max-width: 1100px; width: 100%; }
+
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      width: 260px; height: 300px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 4px solid rgba(255,255,255,.6);
+      box-shadow: 0 20px 60px rgba(0,40,80,.25);
+      background: rgba(255,255,255,.2);
+    }
+    .hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: contrast(1.04) saturate(1.05); }
+
+    .hero-text { flex: 1; text-align: left; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.7); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.65); border-radius: 50px;
+      padding: 7px 18px; font-size: .75rem; font-weight: 600;
+      color: var(--ocean-deep); letter-spacing: .07em; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-name {
+      font-family: 'Clash Display', 'Inter', sans-serif;
+      font-size: clamp(2rem, 3.6vw, 3.6rem);
+      font-weight: 700; line-height: 1.05;
+      color: var(--text-dark); letter-spacing: -.03em;
+      margin-bottom: 8px; white-space: nowrap;
+    }
+    .hero-name .accent { color: var(--ocean-deep); }
+
+    .hero-title-line {
+      font-family: 'Clash Display', 'Inter', sans-serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--ocean-deep); letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 22px;
+    }
+
+    .hero-tagline {
+      font-size: 1.08rem; line-height: 1.7;
+      color: var(--text-dark); margin-bottom: 32px; max-width: 500px;
+    }
+    .hero-tagline strong { color: var(--ocean-deep); font-weight: 700; }
+    .tagline-accent {
+      display: inline-block; font-weight: 700; font-size: 1.28em;
+      color: var(--ocean-deep);
+      font-family: 'Clash Display', 'Inter', sans-serif;
+      letter-spacing: -.01em;
+      position: relative;
+    }
+    .tagline-squiggle { display: block; margin-top: 3px; width: 100%; }
+
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+
+    .btn-primary {
+      background: var(--ocean-deep); color: #fff; padding: 14px 32px;
+      border-radius: 50px; font-size: .93rem; font-weight: 600;
+      transition: all .25s; box-shadow: 0 6px 24px rgba(0,40,80,.3);
+    }
+    .btn-primary:hover { background: var(--ocean-mid); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,40,80,.4); }
+
+    .btn-outline {
+      background: rgba(255,255,255,.72); backdrop-filter: blur(8px);
+      color: var(--ocean-deep); padding: 14px 32px; border-radius: 50px;
+      font-size: .93rem; font-weight: 600;
+      border: 2px solid rgba(0,61,107,.28); transition: all .25s;
+    }
+    .btn-outline:hover { background: #fff; border-color: var(--ocean-deep); transform: translateY(-2px); }
+
+    /* Hero stats — 4 pills in a row */
+    .hero-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .stat-pill {
+      background: rgba(255,255,255,.72); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.65); border-radius: 14px;
+      padding: 14px 22px; min-width: 110px;
+    }
+    .stat-pill .sp-num {
+      font-family: 'Clash Display', 'Inter', sans-serif;
+      font-size: 1.65rem; font-weight: 700; color: var(--ocean-deep); line-height: 1;
+    }
+    .stat-pill .sp-lbl { font-size: .68rem; font-weight: 600; color: var(--text-mid); margin-top: 3px; text-transform: uppercase; letter-spacing: .05em; line-height: 1.3; }
+
+    /* Hero wave to sand */
+    .hero-wave-bottom { position: absolute; bottom: 0; left: 0; right: 0; z-index: 7; line-height: 0; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 96px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .sec-label { font-size: .73rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ocean-light); margin-bottom: 8px; }
+    .sec-title { font-size: clamp(1.9rem, 3.5vw, 2.7rem); font-weight: 700; color: var(--text-dark); letter-spacing: -.025em; line-height: 1.15; margin-bottom: 14px; }
+    .sec-desc  { font-size: 1rem; color: var(--text-mid); line-height: 1.8; max-width: 560px; }
+    .wave-div  { display: block; line-height: 0; }
+
+    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── ABOUT ── */
+    #about { background: var(--sand); position: relative; overflow: hidden; }
+
+    .starfish {
+      position: absolute;
+      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+      opacity: .15;
+      pointer-events: none;
+    }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+
+    .about-text .sec-label { color: var(--ocean-mid); }
+    .about-text .sec-title { color: var(--text-dark); }
+    .about-text p { font-size: .97rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 16px; }
+    .about-text p strong { color: var(--text-dark); font-weight: 600; }
+
+    .about-card { background: #fff; border-radius: 24px; padding: 36px; box-shadow: var(--shadow-lg); }
+    .about-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 22px; padding-bottom: 10px; border-bottom: 2px solid rgba(0,180,216,.18); }
+
+    .phi { display: flex; gap: 13px; margin-bottom: 18px; }
+    .phi:last-child { margin-bottom: 0; }
+    .phi-ico { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg,rgba(0,119,182,.1),rgba(0,180,216,.15)); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .phi-body strong { display: block; font-size: .88rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .phi-body span   { font-size: .82rem; color: var(--text-soft); line-height: 1.55; }
+
+    /* ── CLIENTS (moved below about) ── */
+    #clients { background: var(--sand-mid); padding-top: 0; }
+
+    .clients-hdr { text-align: center; margin-bottom: 44px; }
+    .clients-hdr .sec-label { color: var(--ocean-mid); }
+    .clients-hdr .sec-title { color: var(--text-dark); }
+
+    .track-wrap { overflow: hidden; position: relative; }
+    .track-wrap::before,
+    .track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 90px; z-index: 2; pointer-events: none; }
+    .track-wrap::before { left: 0; background: linear-gradient(to right, var(--sand-mid), transparent); }
+    .track-wrap::after  { right: 0; background: linear-gradient(to left, var(--sand-mid), transparent); }
+
+    .track { display: flex; gap: 18px; width: max-content; will-change: transform; }
+
+    .logo-pill {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      flex-shrink: 0; cursor: pointer;
+      text-decoration: none;
+    }
+
+    .logo-ring {
+      width: 86px; height: 86px; border-radius: 50%;
+      background: #fff; border: 2px solid rgba(0,119,182,.14);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; transition: all .3s;
+      box-shadow: 0 3px 14px rgba(0,40,80,.08);
+    }
+    .logo-pill:hover .logo-ring { border-color: var(--ocean-mid); box-shadow: 0 8px 26px rgba(0,119,182,.2); transform: translateY(-4px); }
+    .logo-ring img { width: 52px; height: 52px; object-fit: contain; }
+    .logo-ring .logo-fb { font-family: 'Clash Display', sans-serif; font-size: .7rem; font-weight: 700; color: var(--ocean-deep); text-align: center; padding: 6px; line-height: 1.2; }
+    .logo-pill-name { font-size: .7rem; font-weight: 500; color: var(--text-mid); text-align: center; }
+
+    /* ── SERVICES ── */
+    #services { background: #fff; }
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    .svc { background: #f4f9fe; border-radius: 20px; padding: 32px 24px; border: 1px solid rgba(0,180,216,.12); transition: all .3s; position: relative; overflow: hidden; }
+    .svc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--ocean-deep), var(--ocean-light)); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .svc:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(0,180,216,.28); }
+    .svc:hover::before { transform: scaleX(1); }
+    .svc-ico { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, var(--ocean-deep), var(--ocean-light)); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px; }
+    .svc h3 { font-size: 1rem; color: var(--text-dark); margin-bottom: 8px; }
+    .svc p  { font-size: .85rem; color: var(--text-soft); line-height: 1.7; }
+    .svc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .svc ul li { font-size: .84rem; color: var(--text-soft); line-height: 1.6; padding-left: 14px; position: relative; }
+    .svc ul li::before { content: '·'; position: absolute; left: 0; color: var(--ocean-light); font-weight: 700; font-size: 1rem; line-height: 1.4; }
+
+    /* ── NUMBERS ── */
+    #numbers { background: linear-gradient(155deg, #002550 0%, #004080 55%, #005A9E 100%); position: relative; overflow: hidden; }
+
+    .light-rays { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .lray { position: absolute; top: -30%; width: 1.5px; height: 160%; background: linear-gradient(180deg, rgba(144,224,239,.18) 0%, transparent 100%); transform-origin: top center; }
+
+    .num-hdr { text-align: center; margin-bottom: 56px; }
+    .num-hdr .sec-label { color: rgba(144,224,239,.75); }
+    .num-hdr .sec-title { color: #fff; }
+
+    .num-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-bottom: 64px; }
+    .num-card { background: rgba(255,255,255,.06); border: 1px solid rgba(144,224,239,.14); border-radius: 18px; padding: 32px 18px; text-align: center; transition: all .3s; }
+    .num-card:hover { background: rgba(255,255,255,.11); border-color: rgba(144,224,239,.3); transform: translateY(-4px); }
+    .num-card .bnum { font-family: 'Clash Display', 'Inter', sans-serif; font-size: 2.6rem; font-weight: 700; color: #fff; line-height: 1; margin-bottom: 8px; }
+    .num-card .bnum .u { color: var(--ocean-pale); }
+    .num-card .blbl { font-size: .78rem; color: rgba(255,255,255,.58); line-height: 1.5; }
+
+    /* Case Studies */
+    .cs-title { font-family: 'Clash Display', 'Inter', sans-serif; font-size: 1.25rem; font-weight: 700; color: rgba(255,255,255,.88); text-align: center; margin-bottom: 24px; }
+
+    .cs-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+    .cs-tab {
+      padding: 10px 24px; border-radius: 50px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(144,224,239,.2);
+      color: rgba(255,255,255,.65); font-size: .85rem; font-weight: 600; cursor: pointer;
+      transition: all .25s;
+    }
+    .cs-tab:hover    { background: rgba(255,255,255,.14); color: #fff; }
+    .cs-tab.active   { background: rgba(255,255,255,.18); border-color: rgba(144,224,239,.5); color: #fff; }
+
+    .cs-panels { position: relative; }
+    .cs-panel { display: none; }
+    .cs-panel.active { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+    .cs-card {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(144,224,239,.14);
+      border-radius: 20px; padding: 28px 24px; transition: all .3s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .cs-card:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+
+    .cs-brand { font-family: 'Clash Display', 'Inter', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .cs-brand .cs-link-icon { font-size: .75rem; opacity: .6; }
+    .cs-brief { font-size: .78rem; color: rgba(255,255,255,.5); margin-bottom: 22px; line-height: 1.5; }
+
+    .cs-big-num { font-family: 'Clash Display', 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: var(--ocean-pale); line-height: 1; margin-bottom: 6px; }
+    .cs-big-lbl { font-size: .82rem; color: rgba(255,255,255,.65); line-height: 1.5; }
+
+    .cs-open-pdf {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 20px; font-size: .75rem; font-weight: 600;
+      color: var(--ocean-pale); border-bottom: 1px solid rgba(144,224,239,.35);
+      transition: border-color .2s;
+    }
+    .cs-open-pdf:hover { border-color: var(--ocean-pale); color: #fff; }
+
+    /* ── JOURNEY ── */
+    #journey { background: #f4f9fe; }
+
+    .journey-cols { display: grid; grid-template-columns: 1fr 300px; gap: 56px; align-items: start; margin-top: 52px; }
+    .journey-cols .timeline { margin-top: 0; }
+    .journey-deco { position: sticky; top: 90px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .journey-deco .lh-caption { font-size: .8rem; font-weight: 500; color: var(--text-soft); text-align: center; font-style: italic; }
+    .lighthouse-svg { width: 100%; max-width: 280px; filter: drop-shadow(0 8px 24px rgba(0,60,120,.12)); }
+    @keyframes beaconSpin { to { transform: rotate(360deg); } }
+    @keyframes lhWave { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-15px)} }
+    .beacon-spin { animation: beaconSpin 4s linear infinite; transform-origin: 140px 68px; }
+    .lh-wave-anim { animation: lhWave 5s ease-in-out infinite; }
+    .lh-wave-anim2 { animation: lhWave 7s ease-in-out infinite reverse; }
+
+    .timeline { position: relative; padding-left: 34px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--ocean-mid), var(--ocean-pale), transparent); }
+
+    .tl { position: relative; margin-bottom: 50px; }
+    .tl:last-child { margin-bottom: 0; }
+    .tl-dot { position: absolute; left: -41px; top: 6px; width: 15px; height: 15px; border-radius: 50%; background: #fff; border: 3px solid var(--ocean-mid); transition: all .3s; }
+    .tl:hover .tl-dot { background: var(--ocean-mid); box-shadow: 0 0 0 5px rgba(0,119,182,.12); }
+
+    .tl-date   { font-size: .73rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ocean-light); margin-bottom: 4px; }
+    .tl-role   { font-family: 'Clash Display', 'Inter', sans-serif; font-size: 1.12rem; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+    .tl-co     { font-size: .88rem; font-weight: 600; color: var(--ocean-mid); margin-bottom: 10px; }
+    .tl-co a   { color: var(--ocean-mid); border-bottom: 1px dashed rgba(0,119,182,.4); transition: border-color .2s; }
+    .tl-co a:hover { border-color: var(--ocean-deep); }
+    .tl-desc   { font-size: .89rem; color: var(--text-mid); line-height: 1.78; max-width: 620px; }
+
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 4px 11px; border-radius: 50px; background: rgba(0,119,182,.08); color: var(--ocean-deep); border: 1px solid rgba(0,119,182,.15); }
+
+    .tl-win { margin-top: 10px; padding: 10px 14px; background: linear-gradient(135deg, rgba(0,119,182,.06), rgba(0,180,216,.06)); border-left: 3px solid var(--ocean-light); border-radius: 0 8px 8px 0; font-size: .85rem; color: var(--text-mid); }
+    .tl-win strong { color: var(--ocean-deep); font-weight: 700; }
+
+    /* ── SKILLS ── */
+    #skills { background: #fff; }
+
+    .skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; margin-top: 48px; }
+
+    .sk-group { margin-bottom: 28px; }
+    .sk-group h3 { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-soft); margin-bottom: 12px; padding-bottom: 7px; border-bottom: 2px solid rgba(0,180,216,.18); }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .chip {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 500; padding: 6px 13px;
+      border-radius: 8px; background: #f4f9fe;
+      border: 1px solid rgba(0,119,182,.14); color: var(--text-dark);
+      transition: all .2s; cursor: default;
+    }
+    .chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,40,80,.1); }
+    .cdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .chip-logo { width: 16px; height: 16px; border-radius: 3px; object-fit: cover; flex-shrink: 0; }
+
+    /* Brand color dots */
+    .c-google    { border-color: rgba(66,133,244,.25);  } .c-google    .cdot { background:#4285F4; }
+    .c-linkedin  { border-color: rgba(10,102,194,.25);  } .c-linkedin  .cdot { background:#0A66C2; }
+    .c-meta      { border-color: rgba(0,129,251,.25);   } .c-meta      .cdot { background:#0081FB; }
+    .c-microsoft { border-color: rgba(0,164,239,.25);   } .c-microsoft .cdot { background:#00A4EF; }
+    .c-youtube   { border-color: rgba(255,0,0,.2);      } .c-youtube   .cdot { background:#FF0000; }
+    .c-twitter   { border-color: rgba(29,161,242,.25);  } .c-twitter   .cdot { background:#1DA1F2; }
+    .c-pinterest { border-color: rgba(230,0,35,.2);     } .c-pinterest .cdot { background:#E60023; }
+    .c-amazon    { border-color: rgba(255,153,0,.25);   } .c-amazon    .cdot { background:#FF9900; }
+    .c-hubspot   { border-color: rgba(255,122,89,.25);  } .c-hubspot   .cdot { background:#FF7A59; }
+    .c-sf        { border-color: rgba(0,161,224,.25);   } .c-sf        .cdot { background:#00A1E0; }
+    .c-ga4       { border-color: rgba(232,113,10,.25);  } .c-ga4       .cdot { background:#E8710A; }
+    .c-teal      { border-color: rgba(0,180,216,.22);   } .c-teal      .cdot { background:var(--ocean-light); }
+
+    .certs-wrap { margin-top: 52px; }
+    .certs-wrap h3 { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-soft); margin-bottom: 16px; }
+    .certs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .cert { display: flex; align-items: center; gap: 11px; padding: 16px 18px; background: #f4f9fe; border-radius: 12px; border: 1px solid rgba(0,180,216,.14); transition: all .25s; }
+    .cert:hover { border-color: var(--ocean-mid); box-shadow: var(--shadow); transform: translateY(-2px); }
+    .cert-ico { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .cert h4  { font-size: .83rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+    .cert p   { font-size: .71rem; color: var(--text-soft); }
+
+    /* ── CONTACT ── */
+    #contact { background: linear-gradient(180deg, #5BADE0 0%, var(--ocean-mid) 55%, var(--ocean-deep) 100%); position: relative; overflow: hidden; text-align: center; }
+    .contact-fish { position: absolute; z-index: 1; pointer-events: none; }
+    .contact-fish img { display: block; }
+    #contact .container { position: relative; z-index: 5; }
+    .c-label { color: rgba(255,255,255,.65); }
+    .c-title { color: #fff; margin-bottom: 14px; }
+    .c-sub   { font-size: 1rem; color: rgba(255,255,255,.78); max-width: 460px; margin: 0 auto 44px; line-height: 1.72; }
+
+    .cc-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .cc { display: flex; align-items: center; gap: 11px; background: rgba(255,255,255,.14); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.28); border-radius: 14px; padding: 15px 22px; color: #fff; font-weight: 500; transition: all .3s; }
+    .cc:hover { background: rgba(255,255,255,.24); transform: translateY(-4px); }
+    .cc-ico { width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; font-size: .95rem; }
+    .cc-txt small { display: block; font-size: .65rem; opacity: .7; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1px; }
+    .cc-txt span  { font-size: .88rem; }
+    .btn-contact { display: inline-block; background: #fff; color: var(--ocean-deep); padding: 17px 46px; border-radius: 50px; font-family: 'Clash Display', 'Inter', sans-serif; font-size: .97rem; font-weight: 700; transition: all .3s; box-shadow: 0 8px 30px rgba(0,0,0,.14); }
+    .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(0,0,0,.2); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ocean-deep); color: rgba(255,255,255,.42); text-align: center; padding: 22px; font-size: .78rem; }
+    footer span { color: rgba(255,255,255,.82); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { grid-template-columns: auto 1fr auto; }
+      .nav-links { display: none; }
+      .hero-inner { flex-direction: column; gap: 36px; text-align: center; }
+      .hero-text { text-align: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-photo-wrap { width: 200px; height: 230px; }
+      .hero-tagline { margin-left: auto; margin-right: auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+      .num-grid { grid-template-columns: 1fr 1fr; }
+      .cs-panel.active { grid-template-columns: 1fr; }
+      .skills-cols { grid-template-columns: 1fr; gap: 0; }
+      .certs-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 68px 20px; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .num-grid { grid-template-columns: 1fr 1fr; }
+      .stat-pill .sp-num { font-size: 1.35rem; }
+      .certs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">SM.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#numbers">Results</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+  <a href="https://www.linkedin.com/in/go4shubham/" target="_blank" rel="noopener" class="nav-cta">Let's Talk</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="sky-bg"></div>
+
+  <!-- Sun -->
+  <div class="sun-wrap">
+    <div class="sun-glow"></div>
+    <div class="sun-disk"></div>
+    <div class="sun-rays-ring" id="sunRays"></div>
+  </div>
+
+  <!-- Clouds -->
+  <div class="cloud" style="top:95px;animation-duration:34s;animation-delay:0s;">
+    <svg width="150" height="55" viewBox="0 0 150 55"><ellipse cx="70" cy="38" rx="65" ry="17" fill="rgba(255,255,255,.78)"/><ellipse cx="55" cy="28" rx="35" ry="22" fill="rgba(255,255,255,.78)"/><ellipse cx="90" cy="24" rx="28" ry="19" fill="rgba(255,255,255,.78)"/><ellipse cx="115" cy="33" rx="22" ry="14" fill="rgba(255,255,255,.78)"/></svg>
+  </div>
+  <div class="cloud" style="top:150px;animation-duration:46s;animation-delay:-18s;">
+    <svg width="110" height="42" viewBox="0 0 110 42"><ellipse cx="50" cy="30" rx="46" ry="13" fill="rgba(255,255,255,.65)"/><ellipse cx="40" cy="21" rx="24" ry="17" fill="rgba(255,255,255,.65)"/><ellipse cx="68" cy="19" rx="22" ry="15" fill="rgba(255,255,255,.65)"/></svg>
+  </div>
+  <div class="cloud" style="top:80px;animation-duration:52s;animation-delay:-32s;">
+    <svg width="90" height="36" viewBox="0 0 90 36"><ellipse cx="42" cy="25" rx="38" ry="11" fill="rgba(255,255,255,.58)"/><ellipse cx="30" cy="18" rx="20" ry="14" fill="rgba(255,255,255,.58)"/><ellipse cx="58" cy="15" rx="18" ry="13" fill="rgba(255,255,255,.58)"/></svg>
+  </div>
+
+  <!-- Seagulls -->
+  <svg class="gull" style="top:118px;animation:cloudDrift 28s linear infinite;animation-delay:-6s;" width="44" height="20" viewBox="0 0 44 20">
+    <path d="M0,10 Q11,2 22,10 Q33,2 44,10" stroke="rgba(80,130,175,.75)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <svg class="gull" style="top:96px;animation:cloudDrift 40s linear infinite;animation-delay:-22s;" width="32" height="14" viewBox="0 0 32 14">
+    <path d="M0,7 Q8,1 16,7 Q24,1 32,7" stroke="rgba(80,130,175,.55)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Ocean -->
+  <div class="ocean-body">
+    <!-- Surface waves -->
+    <div class="surface-waves">
+      <svg class="sw" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+        <path d="M0,30 C180,52 360,8 540,30 C720,52 900,8 1080,30 C1260,52 1440,8 1440,30 L1440,0 L0,0 Z" fill="rgba(100,200,240,.55)"/>
+      </svg>
+      <svg class="sw" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+        <path d="M0,18 C240,48 480,5 720,22 C960,42 1200,4 1440,22 L1440,0 L0,0 Z" fill="rgba(0,150,200,.3)"/>
+      </svg>
+      <svg class="sw" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+        <path d="M0,40 C300,15 600,55 900,30 C1100,15 1300,50 1440,35 L1440,0 L0,0 Z" fill="rgba(0,100,160,.2)"/>
+      </svg>
+    </div>
+
+    <!-- WHALE SHARK removed — replaced with PNG fish below -->
+    <div style="display:none"><svg width="1" height="1" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
+        <!-- Main body — rounded torpedo shape -->
+        <path d="M18,48 C26,22 70,10 120,12 C165,14 210,12 248,26 C264,33 270,45 265,57 C260,68 232,74 190,70 C148,66 90,72 52,70 C28,68 10,66 18,48 Z" fill="#3D7FA8"/>
+        <!-- Belly — lighter ventral surface -->
+        <path d="M22,52 C30,40 70,32 120,34 C160,36 205,34 238,46 C248,52 247,62 234,66 C210,72 162,70 120,68 C80,66 38,70 22,52 Z" fill="#8EC6DE"/>
+        <!-- White spots — characteristic whale shark pattern -->
+        <circle cx="70" cy="22" r="6" fill="rgba(255,255,255,.35)"/>
+        <circle cx="100" cy="16" r="5" fill="rgba(255,255,255,.35)"/>
+        <circle cx="134" cy="14" r="7" fill="rgba(255,255,255,.35)"/>
+        <circle cx="166" cy="15" r="5" fill="rgba(255,255,255,.35)"/>
+        <circle cx="198" cy="18" r="6" fill="rgba(255,255,255,.35)"/>
+        <circle cx="228" cy="24" r="4.5" fill="rgba(255,255,255,.3)"/>
+        <circle cx="84" cy="36" r="4.5" fill="rgba(255,255,255,.28)"/>
+        <circle cx="116" cy="30" r="5.5" fill="rgba(255,255,255,.28)"/>
+        <circle cx="150" cy="28" r="5" fill="rgba(255,255,255,.28)"/>
+        <circle cx="182" cy="30" r="4.5" fill="rgba(255,255,255,.25)"/>
+        <circle cx="215" cy="34" r="5" fill="rgba(255,255,255,.25)"/>
+        <!-- Tall dorsal fin -->
+        <path d="M124,12 C128,-2 140,-6 144,10 Z" fill="#2E6A8E"/>
+        <!-- Second dorsal fin -->
+        <path d="M188,16 C191,6 198,4 200,15 Z" fill="#2E6A8E"/>
+        <!-- Large pectoral fin — sweeping downward -->
+        <path d="M92,42 C78,64 68,78 82,76 C94,74 108,60 100,40 Z" fill="#2E6A8E" opacity=".9"/>
+        <!-- Tail fin — crescent on LEFT -->
+        <path d="M18,48 C4,30 -8,28 -4,42 C0,52 10,55 18,50 Z" fill="#2E6A8E"/>
+        <path d="M18,48 C4,65 -8,70 -4,56 C0,48 10,46 18,52 Z" fill="#2E6A8E"/>
+        <!-- Head — wide, flat, characteristic whale shark head -->
+        <path d="M258,30 C272,36 274,52 266,58 C258,64 252,58 252,48 C252,38 258,30 258,30 Z" fill="#2E5870"/>
+        <!-- Wide flat mouth — whale shark's most distinctive feature -->
+        <path d="M264,56 Q274,60 268,66 Q258,64 254,58" fill="#1A3A50"/>
+        <!-- Eye — small relative to body -->
+        <circle cx="256" cy="38" r="5" fill="#1A2E3A"/>
+        <circle cx="257.5" cy="36.5" r="2" fill="rgba(255,255,255,.7)"/>
+        <!-- Gill slits -->
+        <path d="M226,34 Q228,45 226,56" stroke="rgba(30,60,90,.45)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M216,34 Q218,45 216,56" stroke="rgba(30,60,90,.35)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M206,34 Q208,45 206,54" stroke="rgba(30,60,90,.3)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- FISH: ALL images face LEFT naturally.
+         Rule: swimRp (going right) → scaleX(-1) flips to face right.
+               swimLp (going left)  → no flip, already faces left. -->
+
+    <!-- Fish orientations (confirmed):
+         download.png  → faces LEFT  → swimRp + scaleX(-1)
+         fish-clown1   → faces LEFT  → swimLp + no flip
+         fish-betta    → faces LEFT  → swimRp + scaleX(-1)
+         fish-tropical → faces RIGHT → swimRp + no flip -->
+
+    <!-- Fish 1: download.png faces LEFT → going right → flip -->
+    <div class="fish-img" style="bottom:35%;animation:swimRp 22s linear infinite;animation-delay:-4s;">
+      <img src="Fishes/transparent/download.png" alt="fish" style="width:80px;height:auto;transform:scaleX(-1);"/>
+    </div>
+
+    <!-- Fish 2: clownfish faces LEFT → going left → no flip -->
+    <div class="fish-img" style="bottom:28%;animation:swimLp 26s linear infinite;animation-delay:-10s;">
+      <img src="Fishes/transparent/fish-clown1.png" alt="fish" style="width:70px;height:auto;"/>
+    </div>
+
+    <!-- Fish 3: betta faces LEFT → going right → flip -->
+    <div class="fish-img" style="bottom:20%;animation:swimRp 34s linear infinite;animation-delay:-16s;">
+      <img src="Fishes/transparent/fish-betta.webp" alt="fish" style="width:85px;height:auto;transform:scaleX(-1);"/>
+    </div>
+
+    <!-- Fish 4: tropical faces RIGHT → going right → no flip -->
+    <div class="fish-img" style="bottom:10%;animation:swimRp 30s linear infinite;animation-delay:-22s;">
+      <img src="Fishes/transparent/fish-tropical.webp" alt="fish" style="width:70px;height:auto;"/>
+    </div>
+
+    <!-- SQUID emoji — keeps as emoji (they look great) -->
+    <div class="fish-emoji" style="bottom:48%;font-size:38px;animation:swimR 22s linear infinite;animation-delay:-5s;">🦑</div>
+
+    <!-- JELLYFISH — translucent, bobs gently -->
+    <div class="jellyfish-wrap" style="left:22%;bottom:50%;animation-delay:-2s;">
+      <svg width="46" height="58" viewBox="0 0 46 58" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bell dome -->
+        <ellipse cx="23" cy="19" rx="21" ry="17" fill="rgba(195,130,255,.5)" stroke="rgba(170,90,240,.25)" stroke-width="1"/>
+        <!-- Inner dome glow -->
+        <ellipse cx="23" cy="21" rx="13" ry="9" fill="rgba(220,170,255,.35)"/>
+        <!-- Highlight -->
+        <ellipse cx="16" cy="12" rx="6" ry="4" fill="rgba(255,255,255,.25)" transform="rotate(-20,16,12)"/>
+        <!-- Tentacles -->
+        <path d="M10,34 Q8,44 10,54" stroke="rgba(180,100,240,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M15,36 Q13,47 14,58" stroke="rgba(180,100,240,.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M20,37 Q19,49 20,60" stroke="rgba(180,100,240,.55)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M26,37 Q27,48 26,60" stroke="rgba(180,100,240,.45)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M31,36 Q33,47 32,57" stroke="rgba(180,100,240,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M36,34 Q38,44 36,54" stroke="rgba(180,100,240,.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Bubbles -->
+    <div id="bubbles"></div>
+  </div>
+
+  <!-- BOAT — direct child of #hero so bottom:44% = ocean surface -->
+  <div class="boat-wrap">
+    <svg width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,42 C14,54 30,60 65,60 C100,60 116,54 122,42 Z" fill="#8B5C2A"/>
+      <path d="M14,46 C22,54 36,58 65,58 C94,58 108,54 116,46" stroke="rgba(255,220,160,.3)" stroke-width="1.5" fill="none"/>
+      <rect x="12" y="36" width="106" height="8" rx="2" fill="#C8885A"/>
+      <rect x="44" y="22" width="36" height="16" rx="3" fill="#D4A574"/>
+      <rect x="47" y="24" width="10" height="10" rx="2" fill="rgba(135,206,235,.6)" stroke="#A0784A" stroke-width="1"/>
+      <rect x="73" y="24" width="4" height="10" rx="1" fill="rgba(135,206,235,.5)" stroke="#A0784A" stroke-width="1"/>
+      <line x1="65" y1="3" x2="65" y2="38" stroke="#6B3A1F" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M65,5 L98,36 L65,38 Z" fill="rgba(248,248,248,.92)"/>
+      <path d="M65,5 L98,36" stroke="rgba(180,180,180,.5)" stroke-width="1"/>
+      <path d="M65,10 L30,36 L65,36 Z" fill="rgba(240,240,255,.75)"/>
+      <path d="M65,3 L80,7 L65,11 Z" fill="#FF6B35"/>
+      <circle cx="30" cy="46" r="4" fill="rgba(100,180,220,.5)" stroke="#8B5C2A" stroke-width="1.5"/>
+      <circle cx="100" cy="46" r="4" fill="rgba(100,180,220,.5)" stroke="#8B5C2A" stroke-width="1.5"/>
+      <path d="M0,62 Q15,58 30,62 Q45,58 60,62" stroke="rgba(255,255,255,.35)" stroke-width="1.5" fill="none"/>
+      <path d="M100,62 Q110,58 130,62" stroke="rgba(255,255,255,.3)" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Hero content -->
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <img src="shubham.jpg" alt="Shubham Mishra" />
+    </div>
+
+    <div class="hero-text">
+      <div class="hero-badge">🌊 Data-Driven Growth Marketer</div>
+
+      <h1 class="hero-name">Shubham <span class="accent">Mishra</span></h1>
+      <p class="hero-title-line">Head of Paid Media</p>
+
+      <p class="hero-tagline">
+        Launching campaigns is easy.<br/>
+        <strong>Driving actual business impact</strong> is the hard part.<br/>
+        <span class="tagline-accent">That's where I come in.
+          <svg class="tagline-squiggle" viewBox="0 0 260 14" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M2,9 C22,3 42,13 62,8 C82,3 102,12 122,7 C142,2 162,11 182,7 C202,3 222,12 258,6" stroke="#FF6B35" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#journey" class="btn-primary">See My Journey</a>
+        <a href="https://www.linkedin.com/in/go4shubham/" target="_blank" rel="noopener" class="btn-outline">Get In Touch</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <div class="sp-num">9+</div>
+          <div class="sp-lbl">Years<br/>Experience</div>
+        </div>
+        <div class="stat-pill">
+          <div class="sp-num">$100M+</div>
+          <div class="sp-lbl">Ad Spend<br/>Managed</div>
+        </div>
+        <div class="stat-pill">
+          <div class="sp-num">50+</div>
+          <div class="sp-lbl">Brands<br/>Worked On</div>
+        </div>
+        <div class="stat-pill">
+          <div class="sp-num">6+</div>
+          <div class="sp-lbl">Industries<br/>Covered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave to sand -->
+  <div class="hero-wave-bottom">
+    <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="90">
+      <path d="M0,45 C360,90 1080,0 1440,55 L1440,90 L0,90 Z" fill="#F5E6C8"/>
+      <path d="M0,65 C480,20 960,88 1440,50 L1440,90 L0,90 Z" fill="rgba(245,230,200,.5)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" style="position:relative;overflow:hidden;">
+  <div class="starfish" style="width:90px;height:90px;background:#FF8C00;top:48px;right:72px;transform:rotate(15deg);"></div>
+  <div class="starfish" style="width:52px;height:52px;background:#E85555;bottom:90px;left:44px;transform:rotate(-22deg);"></div>
+  <div class="starfish" style="width:38px;height:38px;background:#FFB300;top:30%;right:200px;transform:rotate(35deg);"></div>
+
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <div class="sec-label">About Me</div>
+        <h2 class="sec-title">9 Years of Turning<br/>Budgets into Growth</h2>
+        <p>I'm a Computer Engineering graduate who found my calling in digital marketing and built a career around one principle: <strong>media spend should move the business, not just the dashboard.</strong></p>
+        <p>Over 9 years I've worked at global agencies, Indian boutique shops, and high-growth startups, managing budgets from zero to <strong>$100M+</strong> and scaling brands across Google, LinkedIn, Meta, and Bing.</p>
+        <p>From <strong>enterprise brands like HP, Oracle, and Pizza Hut</strong> at Publicis Media to SaaS scaleups at Triple Dart, to ecommerce and SaaS brands at Yamu. I've operated across every vertical with one obsession: real business outcomes, not vanity metrics.</p>
+        <p>Beyond campaigns, I work on the full funnel. CRO recommendations, landing page strategy, sales team alignment, ICP definition, and go-to-market planning. The click is just the beginning.</p>
+      </div>
+
+      <div class="about-card fade-up">
+        <h3>How I Think About Paid Media</h3>
+        <div class="phi">
+          <div class="phi-ico">📊</div>
+          <div class="phi-body">
+            <strong>Business impact over vanity metrics</strong>
+            <span>Impressions and CTR are inputs. Revenue, pipeline, and CAC are the outputs that matter.</span>
+          </div>
+        </div>
+        <div class="phi">
+          <div class="phi-ico">🔄</div>
+          <div class="phi-body">
+            <strong>Full-funnel ownership</strong>
+            <span>I work with sales teams, fix funnel leaks, improve lead quality, and connect media to actual business results.</span>
+          </div>
+        </div>
+        <div class="phi">
+          <div class="phi-ico">🎯</div>
+          <div class="phi-body">
+            <strong>ICP-first strategy</strong>
+            <span>Every campaign starts with understanding who we target and why they convert. Not just keyword lists.</span>
+          </div>
+        </div>
+        <div class="phi">
+          <div class="phi-ico">🔧</div>
+          <div class="phi-body">
+            <strong>Clearing out the bottlenecks</strong>
+            <span>I identify and fix the friction points in your sales process and conversion funnel that are quietly killing campaign ROI.</span>
+          </div>
+        </div>
+        <div class="phi">
+          <div class="phi-ico">⚡</div>
+          <div class="phi-body">
+            <strong>Speed with precision</strong>
+            <span>Data-driven decisions, fast iteration, and reporting that stakeholders actually understand and act on.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave to clients (sand-mid) -->
+  <svg class="wave-div" style="margin-top:80px;" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+    <path d="M0,30 C360,60 1080,0 1440,35 L1440,60 L0,60 Z" fill="#E8D5A3"/>
+  </svg>
+</section>
+
+<!-- ═══ CLIENTS (below about) ═══ -->
+<section id="clients" style="padding-top:56px;padding-bottom:72px;">
+  <div class="container">
+    <div class="clients-hdr fade-up">
+      <div class="sec-label">Brands</div>
+      <h2 class="sec-title">Brands I've Worked On</h2>
+      <p class="sec-desc" style="margin:0 auto;">From global enterprises to high-growth startups, across SaaS, ecommerce, BFSI, and beyond.</p>
+    </div>
+  </div>
+
+  <div class="track-wrap" style="margin-top:40px;">
+    <div class="track" id="logoTrack">
+      <a href="https://www.hp.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hp.com&size=128" alt="HP" onerror="this.outerHTML='<span class=logo-fb>HP</span>'"/></div>
+        <span class="logo-pill-name">HP</span>
+      </a>
+      <a href="https://www.oracle.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://oracle.com&size=128" alt="Oracle" onerror="this.outerHTML='<span class=logo-fb>Oracle</span>'"/></div>
+        <span class="logo-pill-name">Oracle</span>
+      </a>
+      <a href="https://www.pizzahut.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://pizzahut.com&size=128" alt="Pizza Hut" onerror="this.outerHTML='<span class=logo-fb>Pizza Hut</span>'"/></div>
+        <span class="logo-pill-name">Pizza Hut</span>
+      </a>
+      <a href="https://www.newyorklife.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://newyorklife.com&size=128" alt="New York Life" onerror="this.outerHTML='<span class=logo-fb>NY Life</span>'"/></div>
+        <span class="logo-pill-name">New York Life</span>
+      </a>
+      <a href="https://www.cathaypacific.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://cathaypacific.com&size=128" alt="Cathay Pacific" onerror="this.outerHTML='<span class=logo-fb>Cathay</span>'"/></div>
+        <span class="logo-pill-name">Cathay Pacific</span>
+      </a>
+      <a href="https://www.godrej.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://logo.clearbit.com/godrej.com" alt="Godrej" onerror="this.src='https://icons.duckduckgo.com/ip3/godrej.com.ico';this.onerror=function(){this.outerHTML='<span class=logo-fb>Godrej</span>'}"/></div>
+        <span class="logo-pill-name">Godrej</span>
+      </a>
+      <a href="https://www.leadschool.in" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://leadschool.in&size=128" alt="LEAD School" onerror="this.outerHTML='<span class=logo-fb>LEAD School</span>'"/></div>
+        <span class="logo-pill-name">LEAD School</span>
+      </a>
+      <a href="https://www.plivo.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://plivo.com&size=128" alt="Plivo" onerror="this.outerHTML='<span class=logo-fb>Plivo</span>'"/></div>
+        <span class="logo-pill-name">Plivo</span>
+      </a>
+      <a href="https://www.emitrr.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://emitrr.com&size=128" alt="Emitrr" onerror="this.outerHTML='<span class=logo-fb>Emitrr</span>'"/></div>
+        <span class="logo-pill-name">Emitrr</span>
+      </a>
+      <a href="https://www.dyte.io" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dyte.io&size=128" alt="Dyte" onerror="this.outerHTML='<span class=logo-fb>Dyte</span>'"/></div>
+        <span class="logo-pill-name">Dyte</span>
+      </a>
+      <a href="https://www.peppercontent.io" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://peppercontent.io&size=128" alt="Pepper Content" onerror="this.outerHTML='<span class=logo-fb>Pepper</span>'"/></div>
+        <span class="logo-pill-name">Pepper Content</span>
+      </a>
+      <a href="https://www.teamed.global/" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://teamed.global&size=128" alt="Teamed" onerror="this.outerHTML='<span class=logo-fb>Teamed</span>'"/></div>
+        <span class="logo-pill-name">Teamed</span>
+      </a>
+      <a href="https://www.yamumedia.com" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://yamumedia.com&size=128" alt="Yamu" onerror="this.outerHTML='<span class=logo-fb>Yamu</span>'"/></div>
+        <span class="logo-pill-name">Yamu</span>
+      </a>
+      <a href="https://mobile-text-alerts.com/" target="_blank" rel="noopener" class="logo-pill">
+        <div class="logo-ring"><img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://mobile-text-alerts.com&size=128" alt="Mobile Text Alert" onerror="this.outerHTML='<span class=logo-fb>MTA</span>'"/></div>
+        <span class="logo-pill-name">Mobile Text Alert</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Wave to white -->
+  <svg class="wave-div" style="margin-top:56px;" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="60">
+    <path d="M0,35 C480,65 960,5 1440,38 L1440,60 L0,60 Z" fill="#fff"/>
+  </svg>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">What I Do</div>
+      <h2 class="sec-title">Where I Add Value</h2>
+      <p class="sec-desc">From strategy to execution. SaaS, ecommerce, and everything in between.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc fade-up"><div class="svc-ico">🔍</div><h3>Paid Search (SEM)</h3><ul><li>Google Ads and Bing campaign strategy and build</li><li>Search, Shopping, and Performance Max</li><li>Keyword architecture and match type strategy</li><li>Bid strategy setup and Smart Bidding optimisation</li></ul></div>
+      <div class="svc fade-up"><div class="svc-ico">💼</div><h3>LinkedIn and B2B Paid Social</h3><ul><li>LinkedIn, Meta, and Twitter campaign management</li><li>Audience segmentation by funnel stage and ICP</li><li>ABM campaign setup and lead gen form optimisation</li><li>Qualified pipeline generation aligned to sales</li></ul></div>
+      <div class="svc fade-up"><div class="svc-ico">🚀</div><h3>SaaS Growth and Pipeline</h3><ul><li>Demand gen strategy for growth-stage SaaS</li><li>Lead quality frameworks and MQL to SQL alignment</li><li>CRM integration and attribution setup</li><li>Sales and marketing alignment workshops</li></ul></div>
+      <div class="svc fade-up"><div class="svc-ico">🛒</div><h3>Ecommerce Performance</h3><ul><li>Prospecting, retargeting, and Shopping campaigns</li><li>Performance Max strategy and feed optimisation</li><li>ROAS and CAC optimisation across channels</li><li>Seasonal and promotional campaign planning</li></ul></div>
+      <div class="svc fade-up"><div class="svc-ico">🔬</div><h3>CRO and Funnel Optimisation</h3><ul><li>Landing page audits and A/B testing</li><li>GA4 and GTM tracking setup and QA</li><li>HubSpot and CRM flow configuration</li><li>Conversion funnel analysis and bottleneck removal</li></ul></div>
+      <div class="svc fade-up"><div class="svc-ico">👥</div><h3>Team Leadership and Strategy</h3><ul><li>Built and led teams of 2 to 5 specialists</li><li>Hiring, onboarding, and performance frameworks</li><li>KPI dashboards and stakeholder reporting</li><li>Paid media audits and account takeovers</li></ul></div>
+    </div>
+  </div>
+  <svg class="wave-div" style="margin-top:80px;" viewBox="0 0 1440 65" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="65">
+    <path d="M0,22 C480,65 960,0 1440,38 L1440,65 L0,65 Z" fill="#002550"/>
+  </svg>
+</section>
+
+<!-- ═══ NUMBERS + CASE STUDIES ═══ -->
+<section id="numbers">
+  <div class="light-rays" id="lightRays"></div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="num-hdr fade-up">
+      <div class="sec-label">Real Impact</div>
+      <h2 class="sec-title">Results That Actually Matter</h2>
+    </div>
+
+    <div class="num-grid">
+      <div class="num-card fade-up">
+        <div class="bnum">$100<span class="u">M+</span></div>
+        <div class="blbl">Total ad spend managed across global brands</div>
+      </div>
+      <div class="num-card fade-up">
+        <div class="bnum">5<span class="u">x</span></div>
+        <div class="blbl">Budget scaled for LEAD School, CPL cut by 30%</div>
+      </div>
+      <div class="num-card fade-up">
+        <div class="bnum">230<span class="u">%</span></div>
+        <div class="blbl">Lead-to-opportunity rate increase for Teamed</div>
+      </div>
+      <div class="num-card fade-up">
+        <div class="bnum">48<span class="u">%</span></div>
+        <div class="blbl">CPL reduction for Emitrr in under 6 months</div>
+      </div>
+    </div>
+
+    <!-- Case Studies -->
+    <p class="cs-title fade-up">Case Studies</p>
+
+    <div class="cs-tabs fade-up">
+      <div class="cs-tab active" onclick="showPanel('all')">All</div>
+      <div class="cs-tab" onclick="showPanel('teamed')">Teamed</div>
+      <div class="cs-tab" onclick="showPanel('emitrr')">Emitrr</div>
+      <div class="cs-tab" onclick="showPanel('pepper')">Pepper Content</div>
+    </div>
+
+    <div class="cs-panels">
+      <div class="cs-panel active" id="panel-all">
+        <a href="case-study-teamed.pdf" target="_blank" rel="noopener" class="cs-card fade-up">
+          <div class="cs-brand">Teamed Global <span class="cs-link-icon">↗</span></div>
+          <div class="cs-brief">Global employment SaaS. Scaled EMEA campaigns on Google, LinkedIn, and Bing</div>
+          <div class="cs-big-num">230%</div>
+          <div class="cs-big-lbl">Increase in lead-to-opportunity conversion rate</div>
+          <span class="cs-open-pdf">Open full case study PDF ↗</span>
+        </a>
+        <a href="case-study-emitrr.pdf" target="_blank" rel="noopener" class="cs-card fade-up">
+          <div class="cs-brand">Emitrr <span class="cs-link-icon">↗</span></div>
+          <div class="cs-brief">Customer communication SaaS. Built paid pipeline from zero</div>
+          <div class="cs-big-num">48%</div>
+          <div class="cs-big-lbl">Reduction in cost per lead, scaled from $0 to $500k/month</div>
+          <span class="cs-open-pdf">Open full case study PDF ↗</span>
+        </a>
+        <a href="case-study-pepper.pdf" target="_blank" rel="noopener" class="cs-card fade-up">
+          <div class="cs-brand">Pepper Content <span class="cs-link-icon">↗</span></div>
+          <div class="cs-brief">Content marketing platform. Qualified SQL growth at minimal spend</div>
+          <div class="cs-big-num">100%</div>
+          <div class="cs-big-lbl">Increase in sales pipeline on a month-on-month basis</div>
+          <span class="cs-open-pdf">Open full case study PDF ↗</span>
+        </a>
+      </div>
+
+      <div class="cs-panel" id="panel-teamed">
+        <a href="case-study-teamed.pdf" target="_blank" rel="noopener" class="cs-card fade-up" style="max-width:440px;">
+          <div class="cs-brand">Teamed Global <span class="cs-link-icon">↗</span></div>
+          <div class="cs-brief">Global employment SaaS. Scaled EMEA campaigns on Google, LinkedIn, and Bing from £5k to £90k/month</div>
+          <div class="cs-big-num">230%</div>
+          <div class="cs-big-lbl">Increase in lead-to-opportunity conversion rate</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ocean-pale);min-width:60px;">92%</span><span style="font-size:.78rem;color:rgba(255,255,255,.6);">Increase in click share in 3 months</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ocean-pale);min-width:60px;">18x</span><span style="font-size:.78rem;color:rgba(255,255,255,.6);">Budget scaled from £5k to £90k per month</span></div>
+          </div>
+          <span class="cs-open-pdf">Open full case study PDF ↗</span>
+        </a>
+      </div>
+
+      <div class="cs-panel" id="panel-emitrr">
+        <a href="case-study-emitrr.pdf" target="_blank" rel="noopener" class="cs-card fade-up" style="max-width:440px;">
+          <div class="cs-brand">Emitrr <span class="cs-link-icon">↗</span></div>
+          <div class="cs-brief">Customer communication SaaS. Built a predictable paid pipeline from zero in under 6 months</div>
+          <div class="cs-big-num">48%</div>
+          <div class="cs-big-lbl">Decrease in cost per lead</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ocean-pale);min-width:60px;">40%</span><span style="font-size:.78rem;color:rgba(255,255,255,.6);">Decrease in CPC and increase in CTR</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ocean-pale);min-width:60px;">$500k</span><span style="font-size:.78rem;color:rgba(255,255,255,.6);">Monthly spend reached from $0 in under 6 months</span></div>
+          </div>
+          <span class="cs-open-pdf">Open full case study PDF ↗</span>
+        </a>
+      </div>
+
+      <div class="cs-panel" id="panel-pepper">
+        <a href="case-study-pepper.pdf" target="_blank" rel="noopener" class="cs-card fade-up" style="max-width:440px;">
+          <div class="cs-brand">Pepper Content <span class="cs-link-icon">↗</span></div>
+          <div class="cs-brief">Content marketing platform. Qualified SQLs at minimal spend with a custom PPC blueprint</div>
+          <div class="cs-big-num">100%</div>
+          <div class="cs-big-lbl">Increase in sales pipeline on a month-on-month basis</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ocean-pale);min-width:60px;">40%</span><span style="font-size:.78rem;color:rgba(255,255,255,.6);">Reduction in CPL for SQL leads</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><span style="font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;color:var(--ocean-pale);min-width:60px;">2x</span><span style="font-size:.78rem;color:rgba(255,255,255,.6);">Increase in value of pipeline built</span></div>
+          </div>
+          <span class="cs-open-pdf">Open full case study PDF ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <svg class="wave-div" style="margin-top:80px;" viewBox="0 0 1440 65" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="65">
+    <path d="M0,38 C360,5 1080,65 1440,25 L1440,65 L0,65 Z" fill="#f4f9fe"/>
+  </svg>
+</section>
+
+<!-- ═══ JOURNEY ═══ -->
+<section id="journey">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Work History</div>
+      <h2 class="sec-title">The Journey So Far</h2>
+      <p class="sec-desc">From associate to Head of Paid Media, across global agencies, Indian boutiques, and SaaS scaleups.</p>
+    </div>
+
+    <div class="journey-cols">
+    <div class="timeline">
+      <div class="tl fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Jul 2022 to Present</div>
+        <div class="tl-role">Head of Paid Media</div>
+        <div class="tl-co"><a href="https://www.yamumedia.com" target="_blank" rel="noopener">Yamu</a> &middot; New York (Remote)</div>
+        <p class="tl-desc">Leading paid media end to end: strategy, execution, reporting, and team management across SaaS and ecommerce clients. Managing a team of 5, building Yamu's paid media function from the ground up, and scaling multiple brands to significant monthly budgets.</p>
+        <div class="tl-tags"><span class="tag">Google Ads</span><span class="tag">LinkedIn Ads</span><span class="tag">Meta Ads</span><span class="tag">SaaS + Ecom</span><span class="tag">Team of 5</span></div>
+      </div>
+
+      <div class="tl fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Jul 2021 to Jul 2022</div>
+        <div class="tl-role">Senior Paid Media Specialist</div>
+        <div class="tl-co"><a href="https://www.tripledart.com" target="_blank" rel="noopener">Triple Dart</a></div>
+        <p class="tl-desc">Specialist role focused entirely on SaaS growth marketing. Managed multi-channel campaigns for Plivo, Teamed, and Pepper Content. Led 2 campaign managers and owned quality lead generation and pipeline building across Google, LinkedIn, and Bing.</p>
+        <div class="tl-tags"><span class="tag">SaaS Growth</span><span class="tag">ABM</span><span class="tag">Plivo</span><span class="tag">Teamed</span><span class="tag">Pepper Content</span></div>
+        <div class="tl-win">Scaled Teamed from <strong>£5,000 to £90,000/month</strong> and increased lead-to-opportunity rate by 230%.</div>
+      </div>
+
+      <div class="tl fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2020 to 2021</div>
+        <div class="tl-role">Account Manager</div>
+        <div class="tl-co"><a href="https://www.logicserve.com" target="_blank" rel="noopener">Logicserve Digital</a> &middot; Mumbai</div>
+        <p class="tl-desc">Oversaw the complete marketing process for multiple brands: brand awareness, lead gen, and performance campaigns. Led a team of 3 associates and managed major Indian brands including Godrej and LEAD School.</p>
+        <div class="tl-tags"><span class="tag">Godrej</span><span class="tag">LEAD School</span><span class="tag">Team of 3</span><span class="tag">Brand + Performance</span></div>
+        <div class="tl-win">Scaled LEAD School from <strong>$50k to $250k/month</strong> while cutting CPL by 30%.</div>
+      </div>
+
+      <div class="tl fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Feb 2018 to 2020</div>
+        <div class="tl-role">Marketing Associate to Senior Paid Media Analyst</div>
+        <div class="tl-co"><a href="https://www.publicismedia.com" target="_blank" rel="noopener">Publicis Media</a> &middot; Global</div>
+        <p class="tl-desc">Started career at one of the world's largest media groups. Managed campaigns for major North American and global brands across search, display, and social, from account setup to performance analysis and optimisation.</p>
+        <div class="tl-tags"><span class="tag">HP</span><span class="tag">Oracle</span><span class="tag">Pizza Hut</span><span class="tag">New York Life</span><span class="tag">Cathay Pacific</span></div>
+        <div class="tl-win">Managed a <strong>$10M+ campaign for Pizza Hut US</strong>, increasing ROAS by 2x.</div>
+      </div>
+    </div>
+
+    <!-- Lighthouse decoration -->
+    <div class="journey-deco fade-up">
+      <svg class="lighthouse-svg" viewBox="0 0 260 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lhSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#04082a"/>
+            <stop offset="70%" stop-color="#0d1f4a"/>
+            <stop offset="100%" stop-color="#1a3060"/>
+          </linearGradient>
+          <linearGradient id="lhSea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0a2040"/>
+            <stop offset="100%" stop-color="#020e20"/>
+          </linearGradient>
+          <linearGradient id="lhRock" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a4858"/>
+            <stop offset="100%" stop-color="#1a2430"/>
+          </linearGradient>
+          <radialGradient id="beaconGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fffde0" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#ffe066" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Night sky -->
+        <rect width="260" height="360" fill="url(#lhSky)" rx="12"/>
+
+        <!-- Stars -->
+        <circle cx="22" cy="18" r="1.2" fill="rgba(255,255,255,.9)"/>
+        <circle cx="48" cy="32" r="1.5" fill="rgba(255,255,255,.85)"/>
+        <circle cx="78" cy="14" r="1" fill="rgba(255,255,255,.8)"/>
+        <circle cx="105" cy="26" r="1.3" fill="rgba(255,255,255,.9)"/>
+        <circle cx="138" cy="10" r="1.1" fill="rgba(255,255,255,.75)"/>
+        <circle cx="165" cy="30" r="1.4" fill="rgba(255,255,255,.85)"/>
+        <circle cx="195" cy="16" r="1" fill="rgba(255,255,255,.8)"/>
+        <circle cx="232" cy="24" r="1.5" fill="rgba(255,255,255,.9)"/>
+        <circle cx="245" cy="44" r="1.1" fill="rgba(255,255,255,.7)"/>
+        <circle cx="32" cy="56" r="1" fill="rgba(255,255,255,.65)"/>
+        <circle cx="62" cy="48" r="1.3" fill="rgba(255,255,255,.8)"/>
+        <circle cx="152" cy="50" r="1" fill="rgba(255,255,255,.7)"/>
+        <circle cx="218" cy="60" r="1.2" fill="rgba(255,255,255,.75)"/>
+        <circle cx="88" cy="68" r="1" fill="rgba(255,255,255,.6)"/>
+        <!-- Twinkling star (pulsing opacity) -->
+        <circle cx="120" cy="38" r="1.8" fill="white" opacity=".9">
+          <animate attributeName="opacity" values=".9;.3;.9" dur="2.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="200" cy="42" r="1.6" fill="white" opacity=".8">
+          <animate attributeName="opacity" values=".8;.2;.8" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Moon (crescent) -->
+        <circle cx="210" cy="52" r="22" fill="#d4e8ff" opacity=".95"/>
+        <circle cx="220" cy="45" r="18" fill="#0d1f4a"/>
+
+        <!-- Dark clouds (subtle, barely visible at night) -->
+        <ellipse cx="55" cy="80" rx="38" ry="14" fill="rgba(10,20,50,.55)"/>
+        <ellipse cx="70" cy="74" rx="25" ry="12" fill="rgba(10,20,50,.5)"/>
+        <ellipse cx="175" cy="96" rx="28" ry="11" fill="rgba(10,20,50,.45)"/>
+
+        <!-- Rocky cliff base -->
+        <path d="M20,292 C32,262 52,248 80,244 C102,240 118,248 130,244 C148,238 168,242 192,250 C215,258 238,272 245,300 L245,360 L20,360 Z" fill="url(#lhRock)"/>
+        <!-- Rock highlights -->
+        <path d="M48,274 C60,262 78,256 96,262" stroke="rgba(255,255,255,.22)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M158,252 C172,258 184,266 178,278" stroke="rgba(255,255,255,.18)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+        <!-- Small starfish on rock -->
+        <g transform="translate(72,280)" fill="#FF8C42" opacity=".85">
+          <polygon points="0,-7 1.5,-2 7,-2 2.5,1.5 4,7 0,3.5 -4,7 -2.5,1.5 -7,-2 -1.5,-2" />
+        </g>
+
+        <!-- Ocean -->
+        <rect x="0" y="316" width="260" height="44" fill="url(#lhSea)" rx="0"/>
+        <!-- Waves -->
+        <path d="M-10,320 C20,314 50,326 80,320 C110,314 140,326 170,320 C200,314 230,322 270,318 L270,330 L-10,330 Z" fill="rgba(0,190,230,.55)">
+          <animateTransform attributeName="transform" type="translate" values="0,0; -15,0; 0,0" dur="5s" repeatCount="indefinite"/>
+        </path>
+        <path d="M-10,334 C20,328 50,340 80,334 C110,328 140,340 170,334 C200,328 230,336 270,332 L270,344 L-10,344 Z" fill="rgba(0,130,190,.45)">
+          <animateTransform attributeName="transform" type="translate" values="0,0; 15,0; 0,0" dur="7s" repeatCount="indefinite"/>
+        </path>
+
+        <!-- Lighthouse tower body — slightly tapered trapezoid -->
+        <path d="M106,152 L110,110 L150,110 L154,152 Z" fill="#EFEFEF"/>
+        <rect x="106" y="152" width="48" height="100" fill="#EFEFEF"/>
+        <!-- Tower shadow side -->
+        <path d="M106,152 L110,110 L112,110 L108,152 Z" fill="rgba(0,0,0,.08)"/>
+        <!-- Red stripes -->
+        <rect x="106" y="162" width="48" height="18" fill="#CC2200"/>
+        <rect x="106" y="208" width="48" height="18" fill="#CC2200"/>
+        <!-- Tower top red band -->
+        <rect x="108" y="120" width="44" height="12" fill="#CC2200"/>
+
+        <!-- Gallery platform -->
+        <rect x="100" y="104" width="60" height="8" rx="2" fill="#9aacb8"/>
+        <!-- Gallery railing posts -->
+        <line x1="102" y1="104" x2="102" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="110" y1="104" x2="110" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="118" y1="104" x2="118" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="126" y1="104" x2="126" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="134" y1="104" x2="134" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="142" y1="104" x2="142" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="150" y1="104" x2="150" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="158" y1="104" x2="158" y2="97" stroke="#7a8e9a" stroke-width="2"/>
+        <line x1="102" y1="100" x2="158" y2="100" stroke="#7a8e9a" stroke-width="1.5"/>
+
+        <!-- Lantern room — glowing amber at night -->
+        <rect x="108" y="70" width="44" height="36" rx="3" fill="rgba(255,230,80,.35)" stroke="#c8a820" stroke-width="1.5"/>
+        <!-- Lantern room verticals -->
+        <line x1="119" y1="70" x2="119" y2="106" stroke="rgba(120,160,180,.5)" stroke-width="1"/>
+        <line x1="130" y1="70" x2="130" y2="106" stroke="rgba(120,160,180,.5)" stroke-width="1"/>
+        <line x1="141" y1="70" x2="141" y2="106" stroke="rgba(120,160,180,.5)" stroke-width="1"/>
+        <!-- Lantern roof cone -->
+        <path d="M104,70 L130,46 L156,70 Z" fill="#7a8e9a"/>
+        <!-- Roof highlight -->
+        <path d="M130,46 L118,70" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+        <!-- Tip -->
+        <circle cx="130" cy="44" r="3" fill="#9aacb8"/>
+
+        <!-- Light source — brighter at night -->
+        <circle cx="130" cy="87" r="14" fill="url(#beaconGlow)" opacity="1"/>
+        <circle cx="130" cy="87" r="10" fill="#FFF9A0" opacity=".98"/>
+        <circle cx="130" cy="87" r="6" fill="#FFE800"/>
+        <!-- Rotating light beam — much more visible at night -->
+        <g>
+          <path d="M130,87 L240,10 L252,50 Z" fill="rgba(255,245,80,.28)"/>
+          <path d="M130,87 L18,20 L10,56 Z" fill="rgba(255,245,80,.22)"/>
+          <animateTransform attributeName="transform" type="rotate" from="0 130 87" to="360 130 87" dur="4s" repeatCount="indefinite"/>
+        </g>
+        <!-- Wide ambient glow around lantern room -->
+        <circle cx="130" cy="87" r="32" fill="rgba(255,245,100,.14)"/>
+        <circle cx="130" cy="87" r="22" fill="rgba(255,248,150,.2)"/>
+        <!-- Reflection on water — stronger at night -->
+        <path d="M115,324 Q130,318 145,324 Q130,330 115,324" fill="rgba(255,245,80,.5)"/>
+        <path d="M112,332 Q130,326 148,332 Q130,338 112,332" fill="rgba(255,245,80,.3)"/>
+
+        <!-- Window on tower -->
+        <rect x="116" y="176" width="28" height="20" rx="3" fill="rgba(160,228,255,.5)" stroke="#bbb" stroke-width="1"/>
+        <line x1="130" y1="176" x2="130" y2="196" stroke="rgba(255,255,255,.5)" stroke-width="1"/>
+
+        <!-- Door -->
+        <path d="M118,252 L118,230 Q130,224 142,230 L142,252 Z" fill="#B8935A"/>
+        <circle cx="138" cy="241" r="2" fill="#8A6A3A"/>
+
+        <!-- (reflection handled above near light source) -->
+      </svg>
+      <p class="lh-caption">Every great career needs a guiding light.</p>
+    </div>
+
+    </div><!-- end journey-cols -->
+  </div>
+
+  <svg class="wave-div" style="margin-top:80px;" viewBox="0 0 1440 65" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="65">
+    <path d="M0,48 C360,10 1080,65 1440,22 L1440,65 L0,65 Z" fill="#fff"/>
+  </svg>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label">Skills and Certifications</div>
+      <h2 class="sec-title">In My Arsenal</h2>
+    </div>
+
+    <div class="skills-cols">
+      <div>
+        <div class="sk-group fade-up">
+          <h3>Paid Media Platforms</h3>
+          <div class="chips">
+            <span class="chip c-google"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ads.google.com&size=32" alt="Google Ads logo" onerror="this.style.display='none'"/>Google Ads</span>
+            <span class="chip c-linkedin"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://linkedin.com&size=32" alt="LinkedIn logo" onerror="this.style.display='none'"/>LinkedIn Ads</span>
+            <span class="chip c-meta"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://meta.com&size=32" alt="Meta logo" onerror="this.style.display='none'"/>Meta Ads</span>
+            <span class="chip c-microsoft"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ads.microsoft.com&size=32" alt="Microsoft logo" onerror="this.style.display='none'"/>Bing Ads</span>
+            <span class="chip c-youtube"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://youtube.com&size=32" alt="YouTube logo" onerror="this.style.display='none'"/>YouTube Ads</span>
+            <span class="chip c-twitter"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://twitter.com&size=32" alt="Twitter logo" onerror="this.style.display='none'"/>Twitter Ads</span>
+            <span class="chip c-pinterest"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://pinterest.com&size=32" alt="Pinterest logo" onerror="this.style.display='none'"/>Pinterest Ads</span>
+            <span class="chip c-amazon"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://advertising.amazon.com&size=32" alt="Amazon logo" onerror="this.style.display='none'"/>Amazon Ads</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://searchads360.google.com&size=32" alt="Search Ads 360 logo" onerror="this.style.display='none'"/>Search Ads 360</span>
+          </div>
+        </div>
+        <div class="sk-group fade-up" style="margin-top:24px;">
+          <h3>Analytics and Tracking</h3>
+          <div class="chips">
+            <span class="chip c-ga4"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://analytics.google.com&size=32" alt="GA4 logo" onerror="this.style.display='none'"/>Google Analytics 4</span>
+            <span class="chip c-google"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://tagmanager.google.com&size=32" alt="GTM logo" onerror="this.style.display='none'"/>Google Tag Manager</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://lookerstudio.google.com&size=32" alt="Looker Studio logo" onerror="this.style.display='none'"/>Looker Studio</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://clarity.microsoft.com&size=32" alt="MS Clarity logo" onerror="this.style.display='none'"/>MS Clarity</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://semrush.com&size=32" alt="SEMrush logo" onerror="this.style.display='none'"/>SEMrush</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://similarweb.com&size=32" alt="Similarweb logo" onerror="this.style.display='none'"/>Similarweb</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://factors.ai&size=32" alt="Factors.ai logo" onerror="this.style.display='none'"/>Factors.ai</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="sk-group fade-up">
+          <h3>CRM and Marketing Ops</h3>
+          <div class="chips">
+            <span class="chip c-hubspot"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hubspot.com&size=32" alt="HubSpot logo" onerror="this.style.display='none'"/>HubSpot</span>
+            <span class="chip c-sf"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://salesforce.com&size=32" alt="Salesforce logo" onerror="this.style.display='none'"/>Salesforce</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://gohighlevel.com&size=32" alt="GoHighLevel logo" onerror="this.style.display='none'"/>GoHighLevel</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://unbounce.com&size=32" alt="Unbounce logo" onerror="this.style.display='none'"/>Unbounce</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://webflow.com&size=32" alt="Webflow logo" onerror="this.style.display='none'"/>Webflow</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://figma.com&size=32" alt="Figma logo" onerror="this.style.display='none'"/>Figma</span>
+          </div>
+        </div>
+        <div class="sk-group fade-up" style="margin-top:24px;">
+          <h3>AI and Automation</h3>
+          <div class="chips">
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://anthropic.com&size=32" alt="Claude logo" onerror="this.style.display='none'"/>Claude</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://openai.com&size=32" alt="ChatGPT logo" onerror="this.style.display='none'"/>ChatGPT</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://gemini.google.com&size=32" alt="Gemini logo" onerror="this.style.display='none'"/>Gemini</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://jasper.ai&size=32" alt="Jasper logo" onerror="this.style.display='none'"/>Jasper</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://antigravity.ai&size=32" alt="Antigravity logo" onerror="this.style.display='none'"/>Antigravity</span>
+            <span class="chip c-teal"><img class="chip-logo" src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://perplexity.ai&size=32" alt="Perplexity logo" onerror="this.style.display='none'"/>Perplexity</span>
+          </div>
+        </div>
+        <div class="sk-group fade-up" style="margin-top:24px;">
+          <h3>Strategy and Approach</h3>
+          <div class="chips">
+            <span class="chip c-teal"><span class="cdot"></span>SaaS Growth</span>
+            <span class="chip c-teal"><span class="cdot"></span>Ecommerce Performance</span>
+            <span class="chip c-teal"><span class="cdot"></span>Account-Based Marketing</span>
+            <span class="chip c-teal"><span class="cdot"></span>CRO and A/B Testing</span>
+            <span class="chip c-teal"><span class="cdot"></span>ICP Strategy</span>
+            <span class="chip c-teal"><span class="cdot"></span>Go-to-Market</span>
+            <span class="chip c-teal"><span class="cdot"></span>Lead Generation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs-wrap fade-up">
+      <h3>Certifications</h3>
+      <div class="certs-grid">
+        <div class="cert"><div class="cert-ico" style="background:rgba(66,133,244,.1);">🎓</div><div><h4>Google Ads Search</h4><p>Google · Certified</p></div></div>
+        <div class="cert"><div class="cert-ico" style="background:rgba(66,133,244,.1);">🎓</div><div><h4>Google Ads Display and Video</h4><p>Google · Certified</p></div></div>
+        <div class="cert"><div class="cert-ico" style="background:rgba(66,133,244,.1);">🎓</div><div><h4>Google Ads Measurement</h4><p>Google · Certified</p></div></div>
+        <div class="cert"><div class="cert-ico" style="background:rgba(0,164,239,.1);">🎓</div><div><h4>Bing Ads Accredited</h4><p>Microsoft · Certified</p></div></div>
+        <div class="cert"><div class="cert-ico" style="background:rgba(66,133,244,.1);">🎓</div><div><h4>Search Ads 360</h4><p>Google · Certified</p></div></div>
+        <div class="cert"><div class="cert-ico" style="background:rgba(255,153,0,.1);">🎓</div><div><h4>Amazon Marketing</h4><p>Amazon · Certified</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="wave-div" style="margin-top:80px;" viewBox="0 0 1440 75" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="75">
+    <path d="M0,38 C360,75 1080,0 1440,48 L1440,75 L0,75 Z" fill="#5BADE0"/>
+  </svg>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <!-- Contact fish: download→LEFT(flip) | clown→LEFT(no flip) | betta→LEFT(flip) | tropical→RIGHT(no flip) -->
+  <div class="contact-fish" style="top:28%;animation:swimRp 22s linear infinite;animation-delay:0s;">
+    <img src="Fishes/transparent/download.png" alt="" style="width:70px;height:auto;transform:scaleX(-1);opacity:.7;"/>
+  </div>
+  <div class="contact-fish" style="bottom:32%;animation:swimLp 28s linear infinite;animation-delay:-8s;">
+    <img src="Fishes/transparent/fish-clown1.png" alt="" style="width:60px;height:auto;opacity:.65;"/>
+  </div>
+  <div class="contact-fish" style="top:58%;animation:swimRp 36s linear infinite;animation-delay:-18s;">
+    <img src="Fishes/transparent/fish-betta.webp" alt="" style="width:65px;height:auto;transform:scaleX(-1);opacity:.7;"/>
+  </div>
+  <div class="contact-fish" style="bottom:18%;animation:swimRp 30s linear infinite;animation-delay:-14s;">
+    <img src="Fishes/transparent/fish-tropical.webp" alt="" style="width:60px;height:auto;opacity:.65;"/>
+  </div>
+
+  <div class="container">
+    <div class="fade-up">
+      <div class="sec-label c-label">Contact</div>
+      <h2 class="sec-title c-title">Let's Build Something That<br/>Actually Moves the Business</h2>
+      <p class="c-sub">Whether it's a new campaign, a struggling account, or building a paid media team. Let's talk.</p>
+    </div>
+
+    <div class="cc-row fade-up">
+      <a href="mailto:Shubham.m999@gmail.com" class="cc">
+        <div class="cc-ico">✉️</div>
+        <div class="cc-txt"><small>Email</small><span>Shubham.m999@gmail.com</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/go4shubham/" target="_blank" rel="noopener" class="cc">
+        <div class="cc-ico">💼</div>
+        <div class="cc-txt"><small>LinkedIn</small><span>/in/go4shubham</span></div>
+      </a>
+      <a href="tel:+917016851221" class="cc">
+        <div class="cc-ico">📞</div>
+        <div class="cc-txt"><small>Phone</small><span>+91 70168 51221</span></div>
+      </a>
+    </div>
+
+    <div class="fade-up">
+      <a href="https://www.linkedin.com/in/go4shubham/" target="_blank" rel="noopener" class="btn-contact">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>2026 <span>Shubham Mishra</span> &middot; Head of Paid Media &middot; Mumbai, India</p>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 30));
+
+  // Sun rays
+  const sr = document.getElementById('sunRays');
+  for (let i = 0; i < 14; i++) {
+    const r = document.createElement('div');
+    r.className = 'sun-ray';
+    const angle = (i / 14) * 360;
+    const len = 70 + Math.random() * 55;
+    r.style.cssText = `transform:rotate(${angle}deg) translateY(-${len/2}px);height:${len}px;left:43px;top:43px;`;
+    sr.appendChild(r);
+  }
+
+  // Light rays in numbers section
+  const lr = document.getElementById('lightRays');
+  if (lr) {
+    for (let i = 0; i < 10; i++) {
+      const ray = document.createElement('div');
+      ray.className = 'lray';
+      ray.style.cssText = `left:${5 + i * 10}%;transform:rotate(${-8 + i * 2}deg);opacity:${0.25 + Math.random()*.35};`;
+      lr.appendChild(ray);
+    }
+  }
+
+  // Bubbles
+  const bc = document.getElementById('bubbles');
+  if (bc) {
+    for (let i = 0; i < 22; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const sz = 4 + Math.random() * 9;
+      b.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*70}%;animation-duration:${3+Math.random()*5}s;animation-delay:${Math.random()*7}s;`;
+      bc.appendChild(b);
+    }
+  }
+
+  // Marquee: JS-driven RAF so click hit-testing stays in sync with visual position
+  const lt = document.getElementById('logoTrack');
+  if (lt) {
+    lt.innerHTML += lt.innerHTML;
+    let marqueeX = 0, marqueePaused = false;
+    const trackWrap = lt.closest('.track-wrap');
+    if (trackWrap) {
+      trackWrap.addEventListener('mouseenter', () => marqueePaused = true);
+      trackWrap.addEventListener('mouseleave', () => marqueePaused = false);
+    }
+    (function marqueeStep() {
+      if (!marqueePaused) {
+        marqueeX += 0.8;
+        if (marqueeX >= lt.scrollWidth / 2) marqueeX = 0;
+        lt.style.transform = 'translateX(-' + marqueeX + 'px)';
+      }
+      requestAnimationFrame(marqueeStep);
+    })();
+  }
+
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // Case study tabs
+  function showPanel(id) {
+    document.querySelectorAll('.cs-tab').forEach((t, i) => {
+      const panels = ['all','teamed','emitrr','pepper'];
+      t.classList.toggle('active', panels[i] === id);
+    });
+    document.querySelectorAll('.cs-panel').forEach(p => {
+      p.classList.toggle('active', p.id === 'panel-' + id);
+    });
+  }
+</script>
+</body>
+</html>

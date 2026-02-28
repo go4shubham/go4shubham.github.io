@@ -1,0 +1,5 @@
+# Utility scripts (not needed on the website)
+make-transparent.js
+node_modules/
+.DS_Store
+Thumbs.db
