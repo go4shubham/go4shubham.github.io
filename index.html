@@ -78,7 +78,7 @@
 
     /* Clouds */
     .cloud { position: absolute; z-index: 1; }
-    .cloud img { display: block; mix-blend-mode: screen; }
+    .cloud img { display: block; }
     @keyframes cloudDrift { 0%{left:-200px} 100%{left:calc(100vw + 200px)} }
 
     /* Seagulls */
@@ -519,15 +519,15 @@
     <div class="sun-rays-ring" id="sunRays"></div>
   </div>
 
-  <!-- Clouds — real images, mix-blend-mode removes white background -->
+  <!-- Clouds — transparent PNGs -->
   <div class="cloud" style="top:62px;left:5%;">
-    <img src="Cloud_1.jpeg" alt="" width="200"/>
+    <img src="Cloud_1.png" alt="" width="200"/>
   </div>
   <div class="cloud" style="top:75px;left:30%;">
-    <img src="Cloud_2.jpeg" alt="" width="160"/>
+    <img src="Cloud_2.png" alt="" width="160"/>
   </div>
   <div class="cloud" style="top:66px;left:54%;">
-    <img src="Cloud_3.jpeg" alt="" width="130"/>
+    <img src="Cloud_3.png" alt="" width="130"/>
   </div>
   <!-- Seagulls -->
   <svg class="gull" style="top:118px;animation:cloudDrift 28s linear infinite;animation-delay:-6s;" width="44" height="20" viewBox="0 0 44 20">
