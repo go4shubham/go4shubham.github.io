@@ -78,7 +78,7 @@
 
     /* Clouds */
     .cloud { position: absolute; z-index: 1; }
-    .cloud svg { display: block; }
+    .cloud img { display: block; mix-blend-mode: multiply; }
     @keyframes cloudDrift { 0%{left:-200px} 100%{left:calc(100vw + 200px)} }
 
     /* Seagulls */
@@ -519,38 +519,15 @@
     <div class="sun-rays-ring" id="sunRays"></div>
   </div>
 
-  <!-- Clouds — static, unified single-cloud shapes -->
-  <div class="cloud" style="top:68px;left:5%;">
-    <svg width="180" height="62" viewBox="0 0 180 62">
-      <g fill="rgba(255,255,255,.86)">
-        <ellipse cx="90" cy="52" rx="84" ry="14"/>
-        <circle cx="52" cy="38" r="26"/>
-        <circle cx="82" cy="28" r="30"/>
-        <circle cx="118" cy="32" r="24"/>
-        <circle cx="148" cy="42" r="18"/>
-      </g>
-    </svg>
+  <!-- Clouds — real images, mix-blend-mode removes white background -->
+  <div class="cloud" style="top:62px;left:5%;">
+    <img src="Cloud_1.jpeg" alt="" width="200"/>
   </div>
-  <div class="cloud" style="top:80px;left:30%;">
-    <svg width="140" height="50" viewBox="0 0 140 50">
-      <g fill="rgba(255,255,255,.73)">
-        <ellipse cx="70" cy="42" rx="64" ry="11"/>
-        <circle cx="42" cy="32" r="20"/>
-        <circle cx="68" cy="24" r="24"/>
-        <circle cx="98" cy="30" r="19"/>
-        <circle cx="120" cy="37" r="14"/>
-      </g>
-    </svg>
+  <div class="cloud" style="top:75px;left:30%;">
+    <img src="Cloud_2.jpeg" alt="" width="160"/>
   </div>
-  <div class="cloud" style="top:72px;left:53%;">
-    <svg width="108" height="42" viewBox="0 0 108 42">
-      <g fill="rgba(255,255,255,.63)">
-        <ellipse cx="54" cy="34" rx="50" ry="10"/>
-        <circle cx="32" cy="26" r="16"/>
-        <circle cx="54" cy="19" r="19"/>
-        <circle cx="78" cy="24" r="15"/>
-      </g>
-    </svg>
+  <div class="cloud" style="top:66px;left:54%;">
+    <img src="Cloud_3.jpeg" alt="" width="130"/>
   </div>
   <!-- Seagulls -->
   <svg class="gull" style="top:118px;animation:cloudDrift 28s linear infinite;animation-delay:-6s;" width="44" height="20" viewBox="0 0 44 20">
