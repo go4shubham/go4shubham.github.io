@@ -490,6 +490,10 @@
       .hero-photo-wrap { width: 140px; height: 160px; }
       .hero-ctas { margin-bottom: 20px; }
       .hero-tagline { margin-bottom: 18px; }
+      /* Boat: pin to ocean surface on mobile */
+      .boat-wrap { bottom: 216px; }
+      /* Fish: hide on mobile — too crowded */
+      .fish-img { display: none; }
     }
   </style>
 </head>
@@ -497,7 +501,7 @@
 
 <!-- ═══ NAV ═══ -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">SM.</a>
+  <a href="#" class="nav-logo">SM</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
@@ -1388,10 +1392,13 @@
     lt.innerHTML += lt.innerHTML;
     let marqueeX = 0, marqueePaused = false;
     const trackWrap = lt.closest('.track-wrap');
-    if (trackWrap) {
+    // Hover-pause only on non-touch devices
+    if (trackWrap && window.matchMedia('(hover: hover)').matches) {
       trackWrap.addEventListener('mouseenter', () => marqueePaused = true);
       trackWrap.addEventListener('mouseleave', () => marqueePaused = false);
     }
+    // Always resume when returning to the tab
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) marqueePaused = false; });
     (function marqueeStep() {
       if (!marqueePaused) {
         marqueeX += 0.8;
