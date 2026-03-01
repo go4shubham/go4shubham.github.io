@@ -490,8 +490,10 @@
       .hero-photo-wrap { width: 140px; height: 160px; }
       .hero-ctas { margin-bottom: 20px; }
       .hero-tagline { margin-bottom: 18px; }
-      /* Boat: pin to ocean surface on mobile */
-      .boat-wrap { bottom: 216px; }
+      /* Boat: sit slightly lower on mobile */
+      .boat-wrap { bottom: 200px; }
+      /* Jellyfish: push up so it's more visible */
+      .jellyfish-wrap { bottom: 62% !important; }
     }
   </style>
 </head>
@@ -1387,7 +1389,7 @@
   // Mobile fish: spread across ocean, smaller size
   if (window.innerWidth <= 600) {
     const mobileFish = document.querySelectorAll('#hero .fish-img');
-    const mobileBottoms = ['38%', '26%', '16%', '6%'];
+    const mobileBottoms = ['38%', '28%', '22%', '14%'];
     mobileFish.forEach((f, i) => {
       f.style.bottom = mobileBottoms[i] || '10%';
       const img = f.querySelector('img');
