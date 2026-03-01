@@ -492,8 +492,6 @@
       .hero-tagline { margin-bottom: 18px; }
       /* Boat: pin to ocean surface on mobile */
       .boat-wrap { bottom: 216px; }
-      /* Fish: hide on mobile — too crowded */
-      .fish-img { display: none; }
     }
   </style>
 </head>
@@ -1384,6 +1382,17 @@
       b.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*70}%;animation-duration:${3+Math.random()*5}s;animation-delay:${Math.random()*7}s;`;
       bc.appendChild(b);
     }
+  }
+
+  // Mobile fish: spread across ocean, smaller size
+  if (window.innerWidth <= 600) {
+    const mobileFish = document.querySelectorAll('#hero .fish-img');
+    const mobileBottoms = ['38%', '26%', '16%', '6%'];
+    mobileFish.forEach((f, i) => {
+      f.style.bottom = mobileBottoms[i] || '10%';
+      const img = f.querySelector('img');
+      if (img) img.style.width = '48px';
+    });
   }
 
   // Marquee: JS-driven RAF so click hit-testing stays in sync with visual position
