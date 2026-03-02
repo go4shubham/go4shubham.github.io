@@ -1450,8 +1450,13 @@
   const lt = document.getElementById('logoTrack');
   if (lt) {
     lt.innerHTML += lt.innerHTML;
-    let marqueeX = 0, marqueePaused = false;
+    let marqueeX = 0, marqueePaused = false, halfWidth = 0;
     const trackWrap = lt.closest('.track-wrap');
+    // Cache halfWidth once after layout settles — never read scrollWidth inside the RAF loop
+    // (scrollWidth read mid-loop causes the jump-to-zero glitch when layout reflows happen)
+    const initHalfWidth = () => { halfWidth = lt.scrollWidth / 2; };
+    requestAnimationFrame(() => requestAnimationFrame(initHalfWidth));
+    window.addEventListener('resize', initHalfWidth);
     // Hover-pause only on non-touch devices
     if (trackWrap && window.matchMedia('(hover: hover)').matches) {
       trackWrap.addEventListener('mouseenter', () => marqueePaused = true);
@@ -1460,9 +1465,9 @@
     // Always resume when returning to the tab
     document.addEventListener('visibilitychange', () => { if (!document.hidden) marqueePaused = false; });
     (function marqueeStep() {
-      if (!marqueePaused) {
+      if (!marqueePaused && halfWidth > 0) {
         marqueeX += 0.8;
-        if (marqueeX >= lt.scrollWidth / 2) marqueeX = 0;
+        if (marqueeX >= halfWidth) marqueeX = 0;
         lt.style.transform = 'translateX(-' + marqueeX + 'px)';
       }
       requestAnimationFrame(marqueeStep);
