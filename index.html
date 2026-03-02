@@ -276,6 +276,8 @@
     .track-wrap::after  { right: 0; background: linear-gradient(to left, var(--sand-mid), transparent); }
 
     .track { display: flex; gap: 18px; width: max-content; will-change: transform; }
+    @keyframes marqueeRoll { from { transform: translateX(0); } to { transform: translateX(calc(-1 * var(--mw, 50%))); } }
+    .track.marquee-running { animation: marqueeRoll 35s linear infinite; }
 
     .logo-pill {
       display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -1446,43 +1448,20 @@
     });
   }
 
-  // Marquee: JS-driven RAF so click hit-testing stays in sync with visual position
+  // Marquee: CSS animation — runs on compositor thread, guaranteed smooth
   const lt = document.getElementById('logoTrack');
   if (lt) {
     lt.innerHTML += lt.innerHTML;
-    let marqueeX = 0, marqueePaused = false, halfWidth = 0;
-    const trackWrap = lt.closest('.track-wrap');
-    // Cache halfWidth after all resources load so external logo images are settled
-    const initHalfWidth = () => { halfWidth = lt.scrollWidth / 2; };
-    window.addEventListener('load', initHalfWidth);
-    if (document.readyState === 'complete') initHalfWidth();
-    else requestAnimationFrame(() => requestAnimationFrame(initHalfWidth));
-    // Track active scrolling — block hover-pause while page is being scrolled
-    // (track-wrap passing under the cursor during scroll was causing accidental pauses)
-    let isScrolling = false, scrollEndTimer;
-    window.addEventListener('scroll', () => {
-      isScrolling = true;
-      clearTimeout(scrollEndTimer);
-      scrollEndTimer = setTimeout(() => { isScrolling = false; }, 150);
-    }, { passive: true });
-    // Hover-pause only on non-touch devices and only when NOT scrolling
-    if (trackWrap && window.matchMedia('(hover: hover)').matches) {
-      let pauseTimer;
-      trackWrap.addEventListener('mouseenter', () => {
-        pauseTimer = setTimeout(() => { if (!isScrolling) marqueePaused = true; }, 120);
-      });
-      trackWrap.addEventListener('mouseleave', () => { clearTimeout(pauseTimer); marqueePaused = false; });
-    }
-    // Always resume when returning to the tab
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) marqueePaused = false; });
-    (function marqueeStep() {
-      if (!marqueePaused && halfWidth > 0) {
-        marqueeX += 0.8;
-        if (marqueeX >= halfWidth) marqueeX = 0;
-        lt.style.transform = 'translate3d(-' + marqueeX + 'px,0,0)';
-      }
-      requestAnimationFrame(marqueeStep);
-    })();
+    // Measure one set width after load, set CSS custom property, drive animation with it
+    const startMarquee = () => {
+      const half = lt.scrollWidth / 2;
+      if (!half) return;
+      lt.style.setProperty('--mw', half + 'px');
+      lt.classList.add('marquee-running');
+    };
+    window.addEventListener('load', startMarquee);
+    if (document.readyState === 'complete') startMarquee();
+    else requestAnimationFrame(() => requestAnimationFrame(startMarquee));
   }
 
   // Scroll reveal
