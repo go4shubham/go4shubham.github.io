@@ -1451,10 +1451,16 @@
   // Marquee: CSS animation — runs on compositor thread, guaranteed smooth
   const lt = document.getElementById('logoTrack');
   if (lt) {
+    const originalCount = lt.children.length; // count BEFORE duplication
     lt.innerHTML += lt.innerHTML;
-    // Measure one set width after load, set CSS custom property, drive animation with it
+    // Use offsetLeft of first duplicate item — NOT scrollWidth/2.
+    // scrollWidth/2 is wrong: with gap:18px across 28 items there are 27 gaps,
+    // so half = 13.5 gaps, but the duplicate set starts after 14 full gaps → 9px seam error.
+    // offsetLeft of children[originalCount] gives the exact loop point.
     const startMarquee = () => {
-      const half = lt.scrollWidth / 2;
+      const firstDupe = lt.children[originalCount];
+      if (!firstDupe) return;
+      const half = firstDupe.offsetLeft;
       if (!half) return;
       lt.style.setProperty('--mw', half + 'px');
       lt.classList.add('marquee-running');
